@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class SortingTest {
 
-    // ========= 1. Пузырьковая сортировка =========
+    // 1. Пузырьковая сортировка
     public static void bubbleSort(int[] arr) {
         int n = arr.length;
         for (int i = 0; i < n - 1; i++) {
@@ -17,7 +17,7 @@ public class SortingTest {
         }
     }
 
-    // ========= 2. Быстрая сортировка =========
+    // 2. Быстрая сортировка
     public static void quickSort(int[] arr, int low, int high) {
         if (low < high) {
             int pi = partition(arr, low, high);
@@ -47,7 +47,7 @@ public class SortingTest {
         quickSort(arr, 0, arr.length - 1);
     }
 
-    // ========= 3. Сортировка расчёской =========
+    // 3. Сортировка расчёской
     public static void combSort(int[] arr) {
         int gap = arr.length;
         boolean swapped = true;
@@ -68,7 +68,6 @@ public class SortingTest {
         }
     }
 
-    // ========= Вспомогательные функции =========
 
     // Копирование массива
     public static int[] copy(int[] a) {
@@ -92,7 +91,7 @@ public class SortingTest {
             arr[i] = i;
         }
         Random r = new Random();
-        int toSwap = n / 4; // 25% перемешаем
+        int toSwap = n / 4;
         for (int i = 0; i < toSwap; i++) {
             int i1 = r.nextInt(n);
             int i2 = r.nextInt(n);
@@ -110,7 +109,7 @@ public class SortingTest {
             arr[i] = i;
         }
         Random r = new Random();
-        int toSwap = n / 10; // 10% перемешаем
+        int toSwap = n / 10;
         for (int i = 0; i < toSwap; i++) {
             int i1 = r.nextInt(n);
             int i2 = r.nextInt(n);
@@ -133,7 +132,7 @@ public class SortingTest {
     // Много дубликатов (10% уникальных)
     public static int[] arrayWithDuplicates(int n) {
         Random r = new Random();
-        int uniqueCount = Math.max(1, n / 10); // 10% уникальных
+        int uniqueCount = Math.max(1, n / 10);
         int[] arr = new int[n];
         for (int i = 0; i < n; i++) {
             arr[i] = r.nextInt(uniqueCount);
@@ -151,14 +150,13 @@ public class SortingTest {
             long end = System.nanoTime();
             total += (end - start);
         }
-        return total / 5; // среднее время
+        return total / 5;
     }
 
-    // ========= Основная программа =========
+    // Основная программа
     public static void main(String[] args) {
-        int[] sizes = {100, 1000, 5000}; // малый, средний, большой
+        int[] sizes = {100, 1000, 5000};
 
-        // Типы массивов: имя + функция генерации
         Object[][] testCases = {
                 {"Случайный", (java.util.function.IntFunction<int[]>) SortingTest::randomArray},
                 {"Частично отсортированный (75%)", (java.util.function.IntFunction<int[]>) SortingTest::partiallySorted75},
@@ -180,10 +178,11 @@ public class SortingTest {
 
                 System.out.printf("%-30s | Пузырьковая: %8d мкс | Быстрая: %8d мкс | Расчёска: %8d мкс%n",
                         name,
-                        timeBubble / 1000,   // нс → мкс
+                        timeBubble / 1000,
                         timeQuick / 1000,
                         timeComb / 1000);
             }
         }
     }
+
 }
