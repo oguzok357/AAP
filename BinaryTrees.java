@@ -365,7 +365,7 @@ public class BinaryTrees {
         levelOrderTree.printTree();
         System.out.println("Level Order: " + levelOrderTree.levelOrder());
 
-        System.out.println("\n=== СРАВНЕНИЕ РЕЗУЛЬТАТОВ ===");
+        System.out.println("\nСРАВНЕНИЕ РЕЗУЛЬТАТОВ");
         System.out.println("Высота BST: " + bst.height());
         System.out.println("Высота сбалансированного дерева: " + balancedTree.height());
         System.out.println("Высота Level Order дерева: " + levelOrderTree.height());
