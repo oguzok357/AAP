@@ -27,10 +27,10 @@ public class Main {
 }
 
 class Node {
-    Integer data;  // было: T data
-    Node next;     // было: Node<T> next
+    Integer data;
+    Node next; 
 
-    public Node(Integer data) {  // было: public Node(T data)
+    public Node(Integer data) {
         this.data = data;
         this.next = null;
     }
@@ -45,19 +45,19 @@ class SinglyLinkedList {
         size = 0;
     }
 
-    public void addFirst(Integer data) {  // было: public void addFirst(T data)
-        Node newNode = new Node(data);    // было: Node<T> newNode = new Node<>(data)
+    public void addFirst(Integer data) {
+        Node newNode = new Node(data);
         newNode.next = head;
         head = newNode;
         size++;
     }
 
-    public void addLast(Integer data) {  // было: public void addLast(T data)
-        Node newNode = new Node(data);   // было: Node<T> newNode = new Node<>(data)
+    public void addLast(Integer data) {
+        Node newNode = new Node(data);
         if (head == null) {
             head = newNode;
         } else {
-            Node current = head;  // было: Node<T> current = head
+            Node current = head;
             while (current.next != null) {
                 current = current.next;
             }
@@ -83,7 +83,7 @@ class SinglyLinkedList {
         if (head.next == null) {
             head = null;
         } else {
-            Node current = head;  // было: Node<T> current = head
+            Node current = head;
             while (current.next.next != null) {
                 current = current.next;
             }
@@ -92,17 +92,17 @@ class SinglyLinkedList {
         size--;
     }
 
-    public void remove(Integer data) {  // было: public void remove(T data)
+    public void remove(Integer data) {
         if (head == null) {
             System.out.println("Список пуст!");
             return;
         }
-        if (head.data.equals(data)) {  // equals вместо == для сравнения значений
+        if (head.data.equals(data)) {
             head = head.next;
             size--;
             return;
         }
-        Node current = head;  // было: Node<T> current = head
+        Node current = head;
         while (current.next != null && !current.next.data.equals(data)) {
             current = current.next;
         }
@@ -114,8 +114,8 @@ class SinglyLinkedList {
         }
     }
 
-    public boolean contains(Integer data) {  // было: public boolean contains(T data)
-        Node current = head;  // было: Node<T> current = head
+    public boolean contains(Integer data) {
+        Node current = head;
         while (current != null) {
             if (current.data.equals(data)) {
                 return true;
@@ -138,7 +138,7 @@ class SinglyLinkedList {
             System.out.println("Список пуст!");
             return;
         }
-        Node current = head;  // было: Node<T> current = head
+        Node current = head;
         while (current != null) {
             System.out.print(current.data + " ");
             current = current.next;
