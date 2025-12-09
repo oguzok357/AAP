@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+        DoublyLinkedList list = new DoublyLinkedList();
 
         list.addFirst(3);
         list.addFirst(2);
@@ -33,20 +33,22 @@ public class Main {
         System.out.println("После очистки пустой ли список -" + list.isEmpty());
     }
 }
-class Node<T> {
-    T data;
-    Node<T> prev;
-    Node<T> next;
-    public Node(T data) {
+
+class Node {
+    Integer data;
+    Node prev;
+    Node next;
+    
+    public Node(Integer data) {
         this.data = data;
         this.next = null;
         this.prev = null;
     }
 }
 
-class DoublyLinkedList<T> {
-    private Node<T> head;
-    private Node<T> tail;
+class DoublyLinkedList {
+    private Node head;
+    private Node tail;
     private int size;
 
     public DoublyLinkedList() {
@@ -55,8 +57,8 @@ class DoublyLinkedList<T> {
         size = 0;
     }
 
-    public void addFirst(T data) {
-        Node<T> newNode = new Node<>(data);
+    public void addFirst(Integer data) {
+        Node newNode = new Node(data);
         if (head == null) {
             head = tail = newNode;
         } else {
@@ -67,8 +69,8 @@ class DoublyLinkedList<T> {
         size++;
     }
 
-    public void addLast(T data) {
-        Node<T> newNode = new Node<>(data);
+    public void addLast(Integer data) {
+        Node newNode = new Node(data);
         if (tail == null) {
             head = tail = newNode;
         } else {
@@ -107,13 +109,13 @@ class DoublyLinkedList<T> {
         size--;
     }
 
-    public void remove(T data) {
+    public void remove(Integer data) {
         if (head == null) {
             System.out.println("Список пуст!");
             return;
         }
 
-        Node<T> current = head;
+        Node current = head;
         while (current != null && !current.data.equals(data)) {
             current = current.next;
         }
@@ -132,8 +134,8 @@ class DoublyLinkedList<T> {
         }
     }
 
-    public boolean contains(T data) {
-        Node<T> current = head;
+    public boolean contains(Integer data) {
+        Node current = head;
         while (current != null) {
             if (current.data.equals(data)) return true;
             current = current.next;
@@ -154,7 +156,7 @@ class DoublyLinkedList<T> {
             System.out.println("Список пуст!");
             return;
         }
-        Node<T> current = head;
+        Node current = head;
         while (current != null) {
             System.out.print(current.data + " ");
             current = current.next;
@@ -167,7 +169,7 @@ class DoublyLinkedList<T> {
         size = 0;
     }
 
-    public void add(int index, T data) {
+    public void add(int index, Integer data) {
         if (index < 0 || index > size) {
             System.out.println("Неверный индекс!");
             return;
@@ -183,8 +185,8 @@ class DoublyLinkedList<T> {
             return;
         }
 
-        Node<T> newNode = new Node<>(data);
-        Node<T> current = head;
+        Node newNode = new Node(data);
+        Node current = head;
 
         for (int i = 0; i < index; i++) {
             current = current.next;
@@ -214,7 +216,7 @@ class DoublyLinkedList<T> {
             return;
         }
 
-        Node<T> current = head;
+        Node current = head;
         for (int i = 0; i < index; i++) {
             current = current.next;
         }
@@ -224,13 +226,13 @@ class DoublyLinkedList<T> {
         size--;
     }
 
-    public T get(int index) {
+    public Integer get(int index) {
         if (index < 0 || index >= size) {
             System.out.println("Неверный индекс!");
             return null;
         }
 
-        Node<T> current = head;
+        Node current = head;
         for (int i = 0; i < index; i++) {
             current = current.next;
         }
@@ -243,7 +245,7 @@ class DoublyLinkedList<T> {
             System.out.println("Список пуст!");
             return;
         }
-        Node<T> current = tail;
+        Node current = tail;
         while (current != null) {
             System.out.print(current.data + " ");
             current = current.prev;
@@ -251,11 +253,11 @@ class DoublyLinkedList<T> {
         System.out.println();
     }
 
-    public T getFirst() {
+    public Integer getFirst() {
         return (head != null) ? head.data : null;
     }
 
-    public T getLast() {
+    public Integer getLast() {
         return (tail != null) ? tail.data : null;
     }
 }
