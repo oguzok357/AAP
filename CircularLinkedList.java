@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        CircularLinkedList<Integer> list = new CircularLinkedList<>();
+        CircularLinkedList list = new CircularLinkedList();
 
         list.addLast(1);
         list.addLast(2);
@@ -20,7 +20,7 @@ public class Main {
         System.out.println("contains(4): " + list.contains(4));
         System.out.println("find(5): " + (list.find(5) != null ? "найден" : "не найден"));
 
-        CircularLinkedList<Integer>[] halves = list.splitIntoTwo();
+        CircularLinkedList[] halves = list.splitIntoTwo();
         if (halves != null) {
             System.out.print("Первая половина: ");
             halves[0].display();
@@ -30,18 +30,18 @@ public class Main {
     }
 }
 
-class Node<T> {
-    T data;
-    Node<T> next;
+class Node {
+    Integer data;
+    Node next;
 
-    public Node(T data) {
+    public Node(Integer data) {
         this.data = data;
         this.next = null;
     }
 }
 
-class CircularLinkedList<T> {
-    private Node<T> tail;
+class CircularLinkedList {
+    private Node tail;
     private int size;
 
     public CircularLinkedList() {
@@ -57,8 +57,8 @@ class CircularLinkedList<T> {
         return size;
     }
 
-    public void addFirst(T data) {
-        Node<T> newNode = new Node<>(data);
+    public void addFirst(Integer data) {
+        Node newNode = new Node(data);
         if (isEmpty()) {
             tail = newNode;
             tail.next = tail;
@@ -69,8 +69,8 @@ class CircularLinkedList<T> {
         size++;
     }
 
-    public void addLast(T data) {
-        Node<T> newNode = new Node<>(data);
+    public void addLast(Integer data) {
+        Node newNode = new Node(data);
         if (isEmpty()) {
             tail = newNode;
             tail.next = tail;
@@ -103,7 +103,7 @@ class CircularLinkedList<T> {
         if (tail.next == tail) {
             tail = null;
         } else {
-            Node<T> current = tail.next;
+            Node current = tail.next;
             while (current.next != tail) {
                 current = current.next;
             }
@@ -113,14 +113,14 @@ class CircularLinkedList<T> {
         size--;
     }
 
-    public void remove(T data) {
+    public void remove(Integer data) {
         if (isEmpty()) {
             System.out.println("Список пуст!");
             return;
         }
 
-        Node<T> current = tail.next;
-        Node<T> prev = tail;
+        Node current = tail.next;
+        Node prev = tail;
         do {
             if (current.data.equals(data)) {
                 if (current == tail && current == tail.next) {
@@ -141,9 +141,9 @@ class CircularLinkedList<T> {
         System.out.println("Элемент не найден.");
     }
 
-    public boolean contains(T data) {
+    public boolean contains(Integer data) {
         if (isEmpty()) return false;
-        Node<T> current = tail.next;
+        Node current = tail.next;
         do {
             if (current.data.equals(data)) return true;
             current = current.next;
@@ -161,7 +161,7 @@ class CircularLinkedList<T> {
             System.out.println("Список пуст!");
             return;
         }
-        Node<T> current = tail.next;
+        Node current = tail.next;
         do {
             System.out.print(current.data + " ");
             current = current.next;
@@ -179,9 +179,9 @@ class CircularLinkedList<T> {
         return !isEmpty();
     }
 
-    public Node<T> find(T data) {
+    public Node find(Integer data) {
         if (isEmpty()) return null;
-        Node<T> current = tail.next;
+        Node current = tail.next;
         do {
             if (current.data.equals(data)) return current;
             current = current.next;
@@ -189,25 +189,25 @@ class CircularLinkedList<T> {
         return null;
     }
 
-    public CircularLinkedList<T>[] splitIntoTwo() {
+    public CircularLinkedList[] splitIntoTwo() {
         if (size < 2) {
             System.out.println("Недостаточно элементов для разделения.");
             return null;
         }
 
         int mid = size / 2;
-        Node<T> current = tail.next;
+        Node current = tail.next;
         for (int i = 1; i < mid; i++) {
             current = current.next;
         }
 
-        Node<T> head2 = current.next;
+        Node head2 = current.next;
         current.next = tail.next;
 
-        CircularLinkedList<T> firstHalf = new CircularLinkedList<>();
-        CircularLinkedList<T> secondHalf = new CircularLinkedList<>();
+        CircularLinkedList firstHalf = new CircularLinkedList();
+        CircularLinkedList secondHalf = new CircularLinkedList();
 
-        Node<T> temp = tail.next;
+        Node temp = tail.next;
         do {
             firstHalf.addLast(temp.data);
             if (temp == current) break;
@@ -220,7 +220,7 @@ class CircularLinkedList<T> {
             temp = temp.next;
         } while (temp != head2);
 
-        CircularLinkedList<T>[] result = new CircularLinkedList[2];
+        CircularLinkedList[] result = new CircularLinkedList[2];
         result[0] = firstHalf;
         result[1] = secondHalf;
         return result;
