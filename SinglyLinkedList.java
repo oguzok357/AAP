@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+        SinglyLinkedList list = new SinglyLinkedList();
 
         list.addFirst(3);
         list.addFirst(2);
@@ -26,18 +26,18 @@ public class Main {
     }
 }
 
-class Node<T> {
-    T data;
-    Node<T> next;
+class Node {
+    Integer data;  // было: T data
+    Node next;     // было: Node<T> next
 
-    public Node(T data) {
+    public Node(Integer data) {  // было: public Node(T data)
         this.data = data;
         this.next = null;
     }
 }
 
-class SinglyLinkedList<T> {
-    private Node<T> head;
+class SinglyLinkedList {
+    private Node head;
     private int size;
 
     public SinglyLinkedList() {
@@ -45,19 +45,19 @@ class SinglyLinkedList<T> {
         size = 0;
     }
 
-    public void addFirst(T data) {
-        Node<T> newNode = new Node<>(data);
+    public void addFirst(Integer data) {  // было: public void addFirst(T data)
+        Node newNode = new Node(data);    // было: Node<T> newNode = new Node<>(data)
         newNode.next = head;
         head = newNode;
         size++;
     }
 
-    public void addLast(T data) {
-        Node<T> newNode = new Node<>(data);
+    public void addLast(Integer data) {  // было: public void addLast(T data)
+        Node newNode = new Node(data);   // было: Node<T> newNode = new Node<>(data)
         if (head == null) {
             head = newNode;
         } else {
-            Node<T> current = head;
+            Node current = head;  // было: Node<T> current = head
             while (current.next != null) {
                 current = current.next;
             }
@@ -83,7 +83,7 @@ class SinglyLinkedList<T> {
         if (head.next == null) {
             head = null;
         } else {
-            Node<T> current = head;
+            Node current = head;  // было: Node<T> current = head
             while (current.next.next != null) {
                 current = current.next;
             }
@@ -92,17 +92,17 @@ class SinglyLinkedList<T> {
         size--;
     }
 
-    public void remove(T data) {
+    public void remove(Integer data) {  // было: public void remove(T data)
         if (head == null) {
             System.out.println("Список пуст!");
             return;
         }
-        if (head.data.equals(data)) {
+        if (head.data.equals(data)) {  // equals вместо == для сравнения значений
             head = head.next;
             size--;
             return;
         }
-        Node<T> current = head;
+        Node current = head;  // было: Node<T> current = head
         while (current.next != null && !current.next.data.equals(data)) {
             current = current.next;
         }
@@ -114,8 +114,8 @@ class SinglyLinkedList<T> {
         }
     }
 
-    public boolean contains(T data) {
-        Node<T> current = head;
+    public boolean contains(Integer data) {  // было: public boolean contains(T data)
+        Node current = head;  // было: Node<T> current = head
         while (current != null) {
             if (current.data.equals(data)) {
                 return true;
@@ -138,7 +138,7 @@ class SinglyLinkedList<T> {
             System.out.println("Список пуст!");
             return;
         }
-        Node<T> current = head;
+        Node current = head;  // было: Node<T> current = head
         while (current != null) {
             System.out.print(current.data + " ");
             current = current.next;
